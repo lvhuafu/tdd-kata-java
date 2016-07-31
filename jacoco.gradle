@@ -32,19 +32,19 @@ jacocoTestReport {
     }
 
     doLast {
-        new CodeCoverage(jacoco).check(limits)
+        new TestCoverage(jacoco).check(limits)
     }
 }
 
 check.dependsOn jacocoTestReport
 
-class CodeCoverage {
-    private static Logger logger = getLogger(CodeCoverage.class);
+class TestCoverage {
+    private static Logger logger = getLogger(TestCoverage.class);
     def xmlReport
     def htmlReport
     def metrics
 
-    CodeCoverage(jacoco) {
+    TestCoverage(jacoco) {
         xmlReport = new File("${jacoco.reportsDir}/test/jacocoTestReport.xml")
         htmlReport = new File("${jacoco.reportsDir}/test/html/index.html")
         initMetrics()
