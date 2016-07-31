@@ -1,14 +1,18 @@
+plugins {
+    id 'net.saliman.cobertura' version '2.3.2'
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'checkstyle'
-apply from: 'coverage.gradle'
+//apply from: 'coverage.gradle'
 
 repositories {
     jcenter()
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.12'
+    testRuntime 'org.slf4j:slf4j-api:1.7.12'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
 }
@@ -26,4 +30,21 @@ defaultTasks 'clean', 'build'
 
 task wrapper(type: Wrapper) {
     gradleVersion = "2.14"
+}
+
+check.dependsOn 'coberturaCheck'
+
+cobertura {
+    coverageFormats = ['html', 'xml']
+    coverageEncoding = 'UTF-8'
+    coverageExcludes = ['.*Application.*']
+    coverageIgnoreMethodAnnotations = []
+    coverageCheckBranchRate = 90
+    coverageCheckLineRate = 90
+    coverageCheckPackageBranchRate = 90
+    coverageCheckPackageLineRate = 90
+    coverageCheckTotalBranchRate = 90
+    coverageCheckTotalLineRate = 90
+    coverageIgnoreTrivial = true
+    coverageCheckHaltOnFailure = true
 }
