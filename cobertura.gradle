@@ -1,4 +1,4 @@
-apply plugin: 'net.saliman.cobertura'
+//apply plugin: 'net.saliman.cobertura'
 
 cobertura {
     coverageFormats = ['html', 'xml']
