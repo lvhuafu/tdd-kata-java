@@ -10,12 +10,16 @@ public class FizzBuzz {
     public String calculate(int number) {
         String result = valueOf(number);
 
+        if (number % 3 == 0 && number % 5 == 0) {
+            return FIZZ + BUZZ;
+        }
         if (number % 3 == 0) {
             result = FIZZ;
         }
         if (number % 5 == 0) {
             result = BUZZ;
         }
+
         return result;
     }
 }
