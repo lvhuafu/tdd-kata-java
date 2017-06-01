@@ -1,4 +1,4 @@
-package org.coach.tdd.template;
+package org.coach.tdd.kata;
 
 import static java.lang.String.valueOf;
 

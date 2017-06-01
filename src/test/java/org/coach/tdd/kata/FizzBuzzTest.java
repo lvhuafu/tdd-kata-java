@@ -1,4 +1,4 @@
-package org.coach.tdd.template;
+package org.coach.tdd.kata;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

@@ -4,6 +4,8 @@
 
 FizzBuzz
 
+![](img/fizzbuzz.png)
+
 ## Project Board
 - [ZenHub](https://github.com/WowCoach/tdd-kata-java#boards?repos=64041285)
 
