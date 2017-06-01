@@ -6,23 +6,23 @@ public class FizzBuzz {
 
     private static final String FIZZ = "Fizz";
     private static final String BUZZ = "Buzz";
+    private static final String EMPTY = "";
 
     public String calculate(int number) {
         if (number <= 0) {
             throw new InvalidException(number);
         }
-        String result = valueOf(number);
 
-        if (number % 3 == 0 && number % 5 == 0) {
-            return FIZZ + BUZZ;
-        }
-        if (number % 3 == 0) {
-            result = FIZZ;
-        }
-        if (number % 5 == 0) {
-            result = BUZZ;
-        }
+        String result = getFizz(number) + getBuzz(number);
 
-        return result;
+        return result.isEmpty() ? valueOf(number) : result;
+    }
+
+    private String getBuzz(int number) {
+        return number % 5 == 0 ? BUZZ : EMPTY;
+    }
+
+    private String getFizz(int number) {
+        return number % 3 == 0 ? FIZZ : EMPTY;
     }
 }
