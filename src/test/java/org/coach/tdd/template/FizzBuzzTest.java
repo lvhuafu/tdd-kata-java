@@ -40,4 +40,9 @@ public class FizzBuzzTest {
         assertThat(fizzBuzz.calculate(30), is("FizzBuzz"));
         assertThat(fizzBuzz.calculate(45), is("FizzBuzz"));
     }
+
+    @Test(expected = InvalidException.class)
+    public void shouldThrowInvalidNumberExceptionGivenTheNumberIsZero() throws Exception {
+        fizzBuzz.calculate(0);
+    }
 }

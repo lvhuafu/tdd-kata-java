@@ -8,6 +8,9 @@ public class FizzBuzz {
     private static final String BUZZ = "Buzz";
 
     public String calculate(int number) {
+        if (number == 0) {
+            throw new InvalidException();
+        }
         String result = valueOf(number);
 
         if (number % 3 == 0 && number % 5 == 0) {
