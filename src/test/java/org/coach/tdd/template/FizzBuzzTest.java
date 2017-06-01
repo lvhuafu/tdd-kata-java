@@ -3,13 +3,27 @@ package org.coach.tdd.template;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class FizzBuzzTest {
+
+    private FizzBuzz fizzBuzz;
+
+    @Before
+    public void setUp() throws Exception {
+        fizzBuzz = new FizzBuzz();
+    }
+
     @Test
     public void shouldReturnTheNumberItselfGivenTheNumberCannotBeDivedByThreeOrFive() throws Exception {
-        FizzBuzz fizzBuzz = new FizzBuzz();
-
         assertThat(fizzBuzz.calculate(1), is("1"));
+    }
+
+    @Test
+    public void shouldReturnFizzGivenTheNumberCanBeDividedByThree() throws Exception {
+        assertThat(fizzBuzz.calculate(3), is("Fizz"));
+        assertThat(fizzBuzz.calculate(6), is("Fizz"));
+        assertThat(fizzBuzz.calculate(9), is("Fizz"));
     }
 }
