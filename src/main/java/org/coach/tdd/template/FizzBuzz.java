@@ -5,11 +5,17 @@ import static java.lang.String.valueOf;
 public class FizzBuzz {
 
     private static final String FIZZ = "Fizz";
+    private static final String BUZZ = "Buzz";
 
     public String calculate(int number) {
+        String result = valueOf(number);
+
         if (number % 3 == 0) {
-            return FIZZ;
+            result = FIZZ;
         }
-        return valueOf(number);
+        if (number % 5 == 0) {
+            result = BUZZ;
+        }
+        return result;
     }
 }

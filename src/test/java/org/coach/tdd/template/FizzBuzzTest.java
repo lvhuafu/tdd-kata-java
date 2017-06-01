@@ -26,4 +26,11 @@ public class FizzBuzzTest {
         assertThat(fizzBuzz.calculate(6), is("Fizz"));
         assertThat(fizzBuzz.calculate(9), is("Fizz"));
     }
+
+    @Test
+    public void shouldReturnBuzzGiveTheNumberCanBeDividedByFive() throws Exception {
+        assertThat(fizzBuzz.calculate(5), is("Buzz"));
+        assertThat(fizzBuzz.calculate(10), is("Buzz"));
+        assertThat(fizzBuzz.calculate(20), is("Buzz"));
+    }
 }
