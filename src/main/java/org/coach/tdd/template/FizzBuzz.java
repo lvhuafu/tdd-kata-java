@@ -8,8 +8,8 @@ public class FizzBuzz {
     private static final String BUZZ = "Buzz";
 
     public String calculate(int number) {
-        if (number == 0) {
-            throw new InvalidException();
+        if (number <= 0) {
+            throw new InvalidException(number);
         }
         String result = valueOf(number);
 

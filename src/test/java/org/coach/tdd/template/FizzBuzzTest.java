@@ -45,4 +45,9 @@ public class FizzBuzzTest {
     public void shouldThrowInvalidNumberExceptionGivenTheNumberIsZero() throws Exception {
         fizzBuzz.calculate(0);
     }
+
+    @Test(expected = InvalidException.class)
+    public void shouldThrowInvalidNumberExceptionGivenTheNumberIs() throws Exception {
+        fizzBuzz.calculate(-1);
+    }
 }
