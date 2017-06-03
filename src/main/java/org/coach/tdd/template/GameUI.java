@@ -75,23 +75,22 @@ public class GameUI {
                 startGame();
             }
         });
-        setting.add(start);
-        setting.add(end);
-        setting.add(add);
-        setting.add(length);
-        setting.add(width);
-        jframe.setSize(900, 900);
-        jframe.setLocation(300, 200);
+        settingAdd();
+        contentPaneSetting(contentPane);
+        chessboard.setLayout(new GridLayout(lengthx, widthy));
+        initeButton();
+        creatButton();
+        jframeSetting();
+    }
+
+    private static void contentPaneSetting(Container contentPane) {
         contentPane.add(setting, BorderLayout.NORTH);
         contentPane.add(chessboard, BorderLayout.CENTER);
-        chessboard.setLayout(new GridLayout(lengthx, widthy));
-        button = new JButton[lengthx][widthy];
-        for (int i = 0; i < lengthx; i++) {
-            for (int j = 0; j < widthy; j++) {
-                button[i][j] = new JButton("");
-            }
-        }
-        creatButton();
+    }
+
+    private static void jframeSetting() {
+        jframe.setSize(900, 900);
+        jframe.setLocation(300, 200);
         jframe.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
@@ -99,6 +98,24 @@ public class GameUI {
         });
         jframe.setVisible(true);
     }
+
+    private static void settingAdd() {
+        setting.add(start);
+        setting.add(end);
+        setting.add(add);
+        setting.add(length);
+        setting.add(width);
+    }
+
+    private static void initeButton() {
+        button = new JButton[lengthx][widthy];
+        for (int i = 0; i < lengthx; i++) {
+            for (int j = 0; j < widthy; j++) {
+                button[i][j] = new JButton("");
+            }
+        }
+    }
+
     private static void flashChessBoard() {
         chessboard.removeAll();
         lengthx = length.getValue();
