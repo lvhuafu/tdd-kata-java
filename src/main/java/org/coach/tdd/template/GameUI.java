@@ -1,17 +1,17 @@
 package org.coach.tdd.template;
 
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import java.awt.Container;
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import java.awt.Container;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 /**
  * Created by 41988 on 2017/6/3.
@@ -36,38 +36,47 @@ public class GameUI {
         setting = new JPanel();
         chessboard = new JPanel();
         length = new JSlider(JSlider.HORIZONTAL, 0, 20, 8);
-        length.setMajorTickSpacing(10);
-        length.setMinorTickSpacing(1);
-        length.setPaintTicks(true);
-        length.setPaintLabels(true);
-        length.setBounds(10, 10, 260, 50);
         width = new JSlider(JSlider.HORIZONTAL, 0, 20, 8);
-        width.setMajorTickSpacing(10);
-        width.setMinorTickSpacing(1);
-        width.setPaintTicks(true);
-        width.setPaintLabels(true);
-        width.setBounds(10, 10, 260, 50);
+        sliderSetting(length);
+        sliderSetting(width);
         chessBoard = new ChessBoard(lengthx, widthy);
         start = new JButton("start");
         end = new JButton("end");
         add = new JButton("create");
     }
 
+    private static void sliderSetting(JSlider slider) {
+        slider.setMajorTickSpacing(10);
+        slider.setMinorTickSpacing(1);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setBounds(10, 10, 260, 50);
+    }
+
     public static void createUI() {
         inite();
         Container contentPane = jframe.getContentPane();
+        addClickListener();
+        endAddListener();
+        startAddlistener();
+        chessboard.setLayout(new GridLayout(lengthx, widthy));
+        settingAdd();
+        contentPaneSetting(contentPane);
+        initeButton();
+        creatButton();
+        jframeSetting();
+    }
+
+    private static void addClickListener() {
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 flashChessBoard();
             }
         });
-        end.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                flag = false;
-            }
-        });
+    }
+
+    private static void startAddlistener() {
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -75,12 +84,15 @@ public class GameUI {
                 startGame();
             }
         });
-        settingAdd();
-        contentPaneSetting(contentPane);
-        chessboard.setLayout(new GridLayout(lengthx, widthy));
-        initeButton();
-        creatButton();
-        jframeSetting();
+    }
+
+    private static void endAddListener() {
+        end.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                flag = false;
+            }
+        });
     }
 
     private static void contentPaneSetting(Container contentPane) {
