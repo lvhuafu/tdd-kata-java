@@ -40,11 +40,18 @@ public class ChessBoardTest {
 
     @Test
     public void testUpdate() throws Exception {
-
+        chessBoard = new ChessBoard(12,13);
+        chessBoard.getCell(0,0).setSatus(true);
+        chessBoard.update();
+        assertEquals(chessBoard.getCell(0,0).getStatus(),new ChessBoard(12,13).getCell(0,0).getStatus());
     }
 
     @Test
     public void testNextStatus() throws Exception {
-
+        chessBoard = new ChessBoard(12,13);
+        chessBoard.getCell(0,0).setSatus(true);
+        assertThat(chessBoard.nextStatus(0,chessBoard.getCell(0,0)),is(false));
+        assertThat(chessBoard.nextStatus(0,chessBoard.getCell(0,1)),is(false));
+        assertThat(chessBoard.nextStatus(0,chessBoard.getCell(1,0)),is(false));
     }
 }
