@@ -20,6 +20,7 @@ public class GameUI {
     static ChessBoard chessBoard;
     static int length_x = 4;
     static int width_y = 4;
+    static boolean flag = true;
 
     private static void inite() {
         jframe = new JFrame("LifeGame");
@@ -44,6 +45,7 @@ public class GameUI {
         inite();
         Container contentPane = jframe.getContentPane();
         JButton start = new JButton("start");
+        JButton end = new JButton("end");
         JButton add = new JButton("create");
         add.addActionListener(new ActionListener() {
             @Override
@@ -64,13 +66,21 @@ public class GameUI {
                 chessboard.updateUI();
             }
         });
+        end.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                flag = false;
+            }
+        });
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                flag = true;
                 startGame();
             }
         });
         setting.add(start);
+        setting.add(end);
         setting.add(add);
         setting.add(length);
         setting.add(width);
@@ -98,7 +108,7 @@ public class GameUI {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (flag) {
                     try {
                         chessBoard.update();
                         updatePanel();
