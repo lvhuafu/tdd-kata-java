@@ -1,7 +1,13 @@
 package org.coach.tdd.template;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -11,16 +17,19 @@ import java.awt.event.WindowEvent;
  * Created by 41988 on 2017/6/3.
  */
 public class GameUI {
-    static JSlider width;
-    static JSlider length;
-    static JPanel chessboard;
-    static JButton button[][];
-    static JFrame jframe;
-    static JPanel setting;
-    static ChessBoard chessBoard;
-    static int length_x = 4;
-    static int width_y = 4;
-    static boolean flag = true;
+    private static JSlider width;
+    private static JSlider length;
+    private static JPanel chessboard;
+    private static JButton[][] button;
+    private static JFrame jframe;
+    private static JPanel setting;
+    private static ChessBoard chessBoard;
+    private static int lengthx = 4;
+    private static int widthy = 4;
+    private static boolean flag = true;
+    private static JButton start;
+    private static JButton end;
+    private static JButton add;
 
     private static void inite() {
         jframe = new JFrame("LifeGame");
@@ -38,32 +47,19 @@ public class GameUI {
         width.setPaintTicks(true);
         width.setPaintLabels(true);
         width.setBounds(10, 10, 260, 50);
-        chessBoard = new ChessBoard(length_x, width_y);
+        chessBoard = new ChessBoard(lengthx, widthy);
+        start = new JButton("start");
+        end = new JButton("end");
+        add = new JButton("create");
     }
 
     public static void createUI() {
         inite();
         Container contentPane = jframe.getContentPane();
-        JButton start = new JButton("start");
-        JButton end = new JButton("end");
-        JButton add = new JButton("create");
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                chessboard.removeAll();
-                length_x = length.getValue();
-                width_y = width.getValue();
-                chessboard.setLayout(new GridLayout(length_x, width_y));
-                button = new JButton[length_x][width_y];
-                chessBoard = new ChessBoard(length_x, width_y);
-                System.out.println(chessBoard.getLength());
-                for (int i = 0; i < length_x; i++) {
-                    for (int j = 0; j < width_y; j++) {
-                        button[i][j] = new JButton("");
-                    }
-                }
-                creatButton();
-                chessboard.updateUI();
+                flashChessBoard();
             }
         });
         end.addActionListener(new ActionListener() {
@@ -88,10 +84,10 @@ public class GameUI {
         jframe.setLocation(300, 200);
         contentPane.add(setting, BorderLayout.NORTH);
         contentPane.add(chessboard, BorderLayout.CENTER);
-        chessboard.setLayout(new GridLayout(length_x, width_y));
-        button = new JButton[length_x][width_y];
-        for (int i = 0; i < length_x; i++) {
-            for (int j = 0; j < width_y; j++) {
+        chessboard.setLayout(new GridLayout(lengthx, widthy));
+        button = new JButton[lengthx][widthy];
+        for (int i = 0; i < lengthx; i++) {
+            for (int j = 0; j < widthy; j++) {
                 button[i][j] = new JButton("");
             }
         }
@@ -102,6 +98,22 @@ public class GameUI {
             }
         });
         jframe.setVisible(true);
+    }
+    private static void flashChessBoard() {
+        chessboard.removeAll();
+        lengthx = length.getValue();
+        widthy = width.getValue();
+        chessboard.setLayout(new GridLayout(lengthx, widthy));
+        button = new JButton[lengthx][widthy];
+        chessBoard = new ChessBoard(lengthx, widthy);
+        System.out.println(chessBoard.getLength());
+        for (int i = 0; i < lengthx; i++) {
+            for (int j = 0; j < widthy; j++) {
+                button[i][j] = new JButton("");
+            }
+        }
+        creatButton();
+        chessboard.updateUI();
     }
 
     private static void startGame() {
@@ -122,8 +134,8 @@ public class GameUI {
     }
 
     private static void updatePanel() {
-        for (int i = 0; i < length_x; i++) {
-            for (int j = 0; j < width_y; j++) {
+        for (int i = 0; i < lengthx; i++) {
+            for (int j = 0; j < widthy; j++) {
                 JButton button2 = button[i][j];
                 GameCell cell = chessBoard.getCell(i, j);
                 if (cell.getStatus()) {
@@ -137,8 +149,8 @@ public class GameUI {
     }
 
     private static void creatButton() {
-        for (int i = 0; i < length_x; i++) {
-            for (int j = 0; j < width_y; j++) {
+        for (int i = 0; i < lengthx; i++) {
+            for (int j = 0; j < widthy; j++) {
                 chessboard.add(button[i][j]);
                 button[i][j].setBackground(Color.black);
                 final JButton button2 = button[i][j];
@@ -152,9 +164,5 @@ public class GameUI {
                 });
             }
         }
-    }
-
-    public static void main(String[] args) {
-        createUI();
     }
 }
