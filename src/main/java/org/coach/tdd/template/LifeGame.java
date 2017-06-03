@@ -4,7 +4,8 @@ package org.coach.tdd.template;
  * Created by 41988 on 2017/6/3.
  */
 public class LifeGame {
-    public boolean caluate(int aliveCount, GameCell cell) {
+
+    public boolean nextStatus(int aliveCount, GameCell cell) {
         boolean result = false;
         if (aliveCount == 3) {
             result = true;
@@ -17,5 +18,9 @@ public class LifeGame {
 
     public boolean getStatus(GameCell cell) {
         return cell.getStatus();
+    }
+
+    public int caluteAlives(GameCell cell, ChessBoard chessBoard) {
+        return 0;
     }
 }
